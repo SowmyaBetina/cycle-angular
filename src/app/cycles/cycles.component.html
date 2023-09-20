@@ -1,0 +1,34 @@
+
+
+<h1>{{title}}</h1>
+<table>
+  <tr>
+      <th>Brand</th>
+      <th>Stock</th>
+      <th>Operation</th>
+  </tr>
+  <tr *ngFor="let cycle of cycles">
+      <td>{{cycle.brand}}</td>
+      <td>{{cycle.stock-cycle.numBorrowed}}</td>
+      <td>
+          <form method="post">
+              <input type="text" name="borrownumber" #Number>
+              <input type="button" value="borrow" (click)="onBorrow(cycle.id,Number.value)">
+              <input type="button" value="restock" (click)="onRestock(cycle.id,Number.value)">
+              <input type="button" value="return" (click)="onReturn(cycle.id,Number.value)">
+              <!-- <a [routerLink]="['/api/cart']">Rent</a> -->
+              
+              
+          </form>
+      </td>
+  </tr>
+</table>
+<ul>
+<li *ngFor="let cycle of rentedCycles">
+    
+    {{ cycle.brand }} - {{ cycle.stock }} <br>
+    <label for="numberOfDays">stock:</label>
+    <input type="number" id="numberOfDays" [(ngModel)]="numberOfDays" (input)="onNumberOfDaysChange()" />
+    <button (click)="openCart(cycle.id)">Rent</button> 
+</li>
+</ul>
